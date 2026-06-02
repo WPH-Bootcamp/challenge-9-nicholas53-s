@@ -1,21 +1,60 @@
 import api from '@/lib/axios';
-// import { Movie, MovieResponse } from '@/types/movie';
+import { API_ENDPOINTS } from '@/lib/constants';
+import type {
+  MovieListResponse,
+  MovieDetail,
+  MovieCredits,
+  MovieVideosResponse,
+  SearchParams,
+} from '@/types/movie';
 
-// TODO: Create service functions to fetch data from TMDB API
-// Reference: https://developer.themoviedb.org/reference/intro/getting-started
+// Ambil film populer
+export const getPopularMovies = async (page: number = 1): Promise<MovieListResponse> => {
+  const response = await api.get<MovieListResponse>(API_ENDPOINTS.movies.popular, {
+    params: { page },
+  });
+  return response.data;
+};
 
-export const movieService = {
-  // TODO: Implement getPopularMovies function
-  // Endpoint: GET /movie/popular
+// Ambil film yang sedang tayang
+export const getNowPlayingMovies = async (page: number = 1): Promise<MovieListResponse> => {
+  const response = await api.get<MovieListResponse>(API_ENDPOINTS.movies.nowPlaying, {
+    params: { page },
+  });
+  return response.data;
+};
 
-  // TODO: Implement getNowPlayingMovies function
-  // Endpoint: GET /movie/now_playing
+// Ambil detail satu film berdasarkan ID
+export const getMovieDetails = async (id: number): Promise<MovieDetail> => {
+  const response = await api.get<MovieDetail>(API_ENDPOINTS.movies.details(id));
+  return response.data;
+};
 
-  // TODO: Implement getMovieDetails function
-  // Endpoint: GET /movie/{movie_id}
+// Ambil cast & crew film
+export const getMovieCredits = async (id: number): Promise<MovieCredits> => {
+  const response = await api.get<MovieCredits>(API_ENDPOINTS.movies.credits(id));
+  return response.data;
+};
 
-  // TODO: Implement searchMovies function
-  // Endpoint: GET /search/movie
+// Ambil trailer/video film
+export const getMovieVideos = async (id: number): Promise<MovieVideosResponse> => {
+  const response = await api.get<MovieVideosResponse>(API_ENDPOINTS.movies.videos(id));
+  return response.data;
+};
 
-  // TODO: Add more endpoints as needed
+// Ambil film serupa
+export const getSimilarMovies = async (id: number): Promise<MovieListResponse> => {
+  const response = await api.get<MovieListResponse>(API_ENDPOINTS.movies.similar(id));
+  return response.data;
+};
+
+// Search film berdasarkan keyword
+export const searchMovies = async ({
+  query,
+  page = 1,
+}: SearchParams): Promise<MovieListResponse> => {
+  const response = await api.get<MovieListResponse>(API_ENDPOINTS.movies.search, {
+    params: { query, page },
+  });
+  return response.data;
 };
