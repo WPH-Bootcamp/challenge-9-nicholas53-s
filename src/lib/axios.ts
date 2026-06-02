@@ -1,17 +1,34 @@
 import axios from 'axios';
-
-// TODO: Create axios instance with base configuration
-// Hint: Use environment variables for API URL and API key
-// Reference: https://axios-http.com/docs/instance
+import type { InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
 const api = axios.create({
-  // TODO: Configure baseURL from environment variable
-  // TODO: Add default headers (API key, content-type)
+  baseURL: import.meta.env.VITE_TMDB_BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-// TODO: Add request interceptor if needed
-// Hint: You can add API key to every request here
+// Request interceptor — inject API key ke setiap request
+api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  const apiKey = import.meta.env.VITE_TMDB_API_KEY;
+  config.params = {
+    ...config.params,
+    api_key: apiKey,
+  };
+  return config;
+});
 
-// TODO: Add response interceptor for error handling
+// Response interceptor — handle error global
+api.interceptors.response.use(
+  (response: AxiosResponse) => response,
+  (error: AxiosError) => {
+    if (error.response?.status === 401) {
+      console.error('Invalid API key');
+    } else if (error.response?.status === 404) {
+      console.error('Resource not found');
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;
