@@ -1,18 +1,49 @@
 import { create } from 'zustand';
-// import { Movie } from '@/types/movie';
+import { persist } from 'zustand/middleware';
+import { STORAGE_KEYS } from '@/lib/constants';
+import type { Movie } from '@/types/movie';
 
-// TODO: Define your store state interface
 interface MovieStore {
-  // TODO: Add state properties
-  // Examples: favorites, watchlist, selectedMovie, etc.
+  // State
+  favorites: Movie[];
 
-  // TODO: Add action methods
-  // Examples: addToFavorites, removeFromFavorites, etc.
+  // Actions
+  addToFavorites: (movie: Movie) => void;
+  removeFromFavorites: (movieId: number) => void;
+  toggleFavorite: (movie: Movie) => void;
+  isFavorite: (movieId: number) => boolean;
 }
 
-// TODO: Create Zustand store
-// Reference: https://zustand.docs.pmnd.rs/getting-started/introduction
+export const useMovieStore = create<MovieStore>()(
+  persist(
+    (set, get) => ({
+      favorites: [],
 
-export const useMovieStore = create<MovieStore>((set) => ({
-  // TODO: Initialize state and implement actions
-}));
+      addToFavorites: (movie) =>
+        set((state) => ({
+          favorites: [...state.favorites, movie],
+        })),
+
+      removeFromFavorites: (movieId) =>
+        set((state) => ({
+          favorites: state.favorites.filter((m) => m.id !== movieId),
+        })),
+
+      // Toggle — kalau sudah ada di favorites, hapus. Kalau belum, tambah.
+      toggleFavorite: (movie) => {
+        const isFav = get().isFavorite(movie.id);
+        if (isFav) {
+          get().removeFromFavorites(movie.id);
+        } else {
+          get().addToFavorites(movie);
+        }
+      },
+
+      // Cek apakah film sudah di favorites
+      isFavorite: (movieId) => get().favorites.some((m) => m.id === movieId),
+    }),
+    {
+      name: STORAGE_KEYS.favorites, // key di localStorage
+    }
+  )
+);
