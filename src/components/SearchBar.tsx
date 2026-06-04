@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-// Zod schema — validasi input search
 const searchSchema = z.object({
   query: z.string().min(1, 'Search cannot be empty').max(100, 'Search too long').trim(),
 });
@@ -37,7 +36,6 @@ export default function SearchBar({
     defaultValues: { query: defaultValue },
   });
 
-  // Watch nilai input untuk tampilkan tombol clear
   const queryValue = watch('query');
 
   const onSubmit = (data: SearchFormData) => {
@@ -66,19 +64,25 @@ export default function SearchBar({
             {...register('query')}
             type="text"
             placeholder={placeholder}
-            className="bg-white/10 text-white text-sm placeholder:text-gray-400 pl-9 pr-8 py-2 rounded-full w-48 focus:outline-none focus:ring-1 focus:ring-white/30 focus:w-64 transition-all"
+            className="
+              bg-white/10 text-white text-sm
+              placeholder:text-gray-400
+              pl-9 pr-8 py-2 rounded-full
+              w-full md:w-44 focus:md:w-56
+              focus:outline-none focus:ring-1 focus:ring-white/20
+              transition-all duration-300
+            "
           />
           {queryValue && (
             <button
               type="button"
               onClick={handleClear}
-              className="absolute right-3 text-gray-400 hover:text-white"
+              className="absolute right-3 text-gray-400 hover:text-white transition-colors"
             >
               <X size={14} />
             </button>
           )}
         </div>
-        {/* Error message dari Zod */}
         {errors.query && <p className="text-red-400 text-xs mt-1 pl-3">{errors.query.message}</p>}
       </form>
     </div>

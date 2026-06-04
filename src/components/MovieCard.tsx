@@ -33,7 +33,7 @@ export default function MovieCard({ movie, rank }: MovieCardProps) {
 
       <Link to={`/movie/${movie.id}`}>
         {/* Poster image */}
-        <div className="relative rounded-lg overflow-hidden bg-gray-800 aspect-[2/3]">
+        <div className="relative rounded-lg overflow-hidden bg-gray-800 aspect-2/3">
           {movie.poster_path ? (
             <img
               src={getImageUrl(movie.poster_path, IMAGE_SIZES.poster.medium)}

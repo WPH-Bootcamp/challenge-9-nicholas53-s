@@ -1,13 +1,10 @@
-import { Clapperboard } from 'lucide-react';
+import Logo from '@/Asset/Logo.svg';
 
 export default function Footer() {
   return (
     <footer className="bg-black border-t border-white/10 py-6 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-white font-bold">
-          <Clapperboard size={20} className="text-red-500" />
-          <span>Movie</span>
-        </div>
+      <div className="px-35 max-md:px-6 flex items-center justify-between">
+        <img src={Logo} alt="Movie" className="h-7 w-auto" />
         <p className="text-gray-500 text-sm">Copyright ©2025 Movie Explorer</p>
       </div>
     </footer>
