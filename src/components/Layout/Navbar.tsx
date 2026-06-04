@@ -174,7 +174,7 @@ export default function Navbar() {
         </AnimatePresence>
       </nav>
 
-      {/* ── MOBILE FULLSCREEN MENU — sesuai Figma ── */}
+      {/* ── MOBILE FULLSCREEN MENU — */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
