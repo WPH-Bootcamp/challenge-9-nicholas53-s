@@ -3,13 +3,13 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play, ChevronRight, ChevronLeft } from 'lucide-react';
 import Layout from '@/components/Layout/Layout';
-import MovieGrid from '@/components/MovieGrid';
 import TrendingCard from '@/components/TrendingCard';
 import NewReleaseSection from '@/components/NewReleaseSection';
 import { Button } from '@/components/ui/button';
 import { usePopularMovies, useNowPlayingMovies, useSearchMovies } from '@/hooks/useMovies';
 import { getImageUrl } from '@/lib/utils';
 import { IMAGE_SIZES } from '@/lib/constants';
+import SearchResults from '@/components/SearchResult';
 
 export default function HomePage() {
   const [searchParams] = useSearchParams();
@@ -49,10 +49,11 @@ export default function HomePage() {
     <Layout>
       {/* ── SEARCH RESULTS ── */}
       {searchQuery ? (
-        <div className="px-[140px] max-md:px-6 pt-24 pb-8">
-          <h2 className="text-white text-xl font-bold mb-6">Search results for "{searchQuery}"</h2>
-          <MovieGrid movies={searchData?.results || []} isLoading={searchLoading} />
-        </div>
+        <SearchResults
+          query={searchQuery}
+          movies={searchData?.results || []}
+          isLoading={searchLoading}
+        />
       ) : (
         <>
           {/* ════════════════════════
