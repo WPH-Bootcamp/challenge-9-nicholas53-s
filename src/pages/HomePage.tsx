@@ -162,13 +162,6 @@ export default function HomePage() {
             <section>
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-white text-2xl font-bold">Trending Now</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-400 hover:text-white hover:bg-transparent gap-1"
-                >
-                  See all <ChevronRight size={16} />
-                </Button>
               </div>
 
               <div className="relative">
