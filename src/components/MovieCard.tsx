@@ -54,10 +54,10 @@ export default function MovieCard({ movie, rank }: MovieCardProps) {
 
         {/* Info film */}
         <div className="mt-2 px-1">
-          <h3 className="text-white text-sm font-medium truncate">{movie.title}</h3>
+          <h3 className="text-white text-[18px] font-semibold truncate">{movie.title}</h3>
           <div className="flex items-center gap-1 mt-1">
             <Star size={12} className="text-yellow-400 fill-yellow-400" />
-            <span className="text-yellow-400 text-xs">{formatRating(movie.vote_average)}/10</span>
+            <span className="text-gray-400 text-[16px]">{formatRating(movie.vote_average)}/10</span>
           </div>
         </div>
       </Link>

@@ -33,8 +33,8 @@ export default function MovieCard({ movie }: MovieCardProps) {
       className="relative group cursor-pointer w-full"
     >
       <Link to={`/movie/${movie.id}`}>
-        {/* Poster — aspect ratio 2/3, width mengikuti grid */}
-        <div className="relative rounded-2xl overflow-hidden bg-gray-800 aspect-[2/3] w-full">
+        {/* Poster — aspect ratio 2/3*/}
+        <div className="relative rounded-2xl overflow-hidden bg-gray-800 aspect-2/3 w-full">
           {movie.poster_path ? (
             <img
               src={getImageUrl(movie.poster_path, IMAGE_SIZES.poster.medium)}

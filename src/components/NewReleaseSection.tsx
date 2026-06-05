@@ -22,11 +22,11 @@ export default function NewReleaseSection({ movies, isLoading }: NewReleaseSecti
     <section className="pb-12">
       <h2 className="text-white text-2xl font-bold mb-5">New Release</h2>
 
-      {/* Container dengan relative untuk gradient overlay */}
+      {/* Container dengan relative */}
       <div className="relative">
         <MovieGrid movies={displayedMovies} isLoading={isLoading} />
 
-        {/* Fade gradient + Load More — sesuai Figma */}
+        {/* Fade gradient + Load More */}
         {!isLoading && hasMore && (
           <motion.div
             initial={{ opacity: 0 }}

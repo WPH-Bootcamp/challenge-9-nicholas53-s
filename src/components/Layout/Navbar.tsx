@@ -77,7 +77,7 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={`text-sm transition-colors ${
-                  isActive(link.path) ? 'text-white font-medium' : 'text-gray-400 hover:text-white'
+                  isActive(link.path) ? 'text-white font-medium' : 'text-white hover:text-gray-400'
                 }`}
               >
                 {link.label}
@@ -98,7 +98,7 @@ export default function Navbar() {
                 {...register('query')}
                 type="text"
                 placeholder="Search Movie"
-                className="bg-white/10 backdrop-blur-sm text-white text-sm placeholder:text-gray-400 pl-11 pr-10 py-3 rounded-2xl w-56 border border-white/10 focus:outline-none focus:border-white/30 transition-all duration-300"
+                className="bg-[#0A0D1299] backdrop-blur-[40] text-white text-sm placeholder:text-gray-400 pl-11 pr-10 py-3 rounded-2xl w-56 border border-[#252B37] focus:outline-none focus:border-white/30 transition-all duration-300"
               />
               {queryValue && (
                 <button

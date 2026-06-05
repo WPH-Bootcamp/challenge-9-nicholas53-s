@@ -8,18 +8,18 @@ interface MovieGridProps {
   withRank?: boolean;
 }
 
-// Skeleton loading sesuai Figma
+// Skeleton loading
 function MovieCardSkeleton() {
   return (
     <div className="space-y-2">
-      <Skeleton className="w-full aspect-[2/3] rounded-xl bg-gray-800/80" />
+      <Skeleton className="w-full aspect-2/3 rounded-xl bg-gray-800/80" />
       <Skeleton className="h-4 w-3/4 rounded bg-gray-800/80" />
       <Skeleton className="h-3 w-1/4 rounded bg-gray-800/80" />
     </div>
   );
 }
 
-// Empty state — dipakai di Search dan Favorites
+// Empty state
 interface EmptyStateProps {
   type: 'search' | 'favorites';
   onExplore?: () => void;

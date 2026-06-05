@@ -59,10 +59,12 @@ export default function TrendingCard({ movie, rank }: TrendingCardProps) {
 
         {/* Info */}
         <div className="mt-3 px-0.5">
-          <h3 className="text-white text-sm font-semibold truncate leading-tight">{movie.title}</h3>
+          <h3 className="text-white text-[18px] font-semibold truncate leading-tight">
+            {movie.title}
+          </h3>
           <div className="flex items-center gap-1 mt-1.5">
             <Star size={13} className="text-yellow-400 fill-yellow-400" />
-            <span className="text-gray-400 text-sm">{formatRating(movie.vote_average)}/10</span>
+            <span className="text-gray-400 text-[16px]">{formatRating(movie.vote_average)}/10</span>
           </div>
         </div>
       </Link>

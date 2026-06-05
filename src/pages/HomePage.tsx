@@ -208,7 +208,7 @@ export default function HomePage() {
                   {popularLoading
                     ? Array.from({ length: 6 }).map((_, i) => (
                         <div key={i} className="flex-shrink-0 w-[220px] animate-pulse">
-                          <div className="bg-gray-800 rounded-2xl aspect-[2/3]" />
+                          <div className="bg-gray-800 rounded-2xl aspect-2/3" />
                           <div className="mt-3 h-4 bg-gray-800 rounded w-3/4" />
                           <div className="mt-2 h-3 bg-gray-800 rounded w-1/3" />
                         </div>
